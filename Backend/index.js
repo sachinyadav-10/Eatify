@@ -7,6 +7,7 @@ const app = express()
 const Port = process.env.PORT || 5000
 
 app.listen(Port, ()=>{
-   connectDB()
+    connectDB()
+    
     console.log(`server stared at ${Port}`)
 })
