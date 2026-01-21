@@ -1,6 +1,9 @@
 import User from "../models/user.model";
+import genToken from "../utiles/token";
+import bcrypt from "bcryptjs"
 
-const signup=async(req,res)=>{
+// Signup API
+export const signUp=async(req,res)=>{
     try {
         const {fullname,email,password,mobilenumber,role} = req.body
         const user = await user.findOne({email})
@@ -23,7 +26,48 @@ const signup=async(req,res)=>{
             password : hashedPassword
         })
 
+        const token = await genToken(user._id)
+        res.cookie("token",token,{
+            secure:false,
+            sameSite:"strict",
+            maxAge: 7*24*60*60*1000,
+            httpOnly: true
+        })
+
+       return res.status(201).json(user)
+
     } catch (error) {
+        return res.status(500).json(`sign up error ${error}`)
+    }
+}
+
+// SignIn API
+export const signIn=async(req,res)=>{
+    try {
+        const {email,password} = req.body
+        const user = await user.findOne({email})
+        if(!user){
+            return res.status(400).json({message: "User Does not exist."})
+        }
         
+       //Compare hashpassword with the userpassword
+       const isMatch=await bcrypt.compare(password,user.password)
+        if(isMatch){
+            return res.status(400).json({message: "incorret passsword"})
+        }
+
+
+        const token = await genToken(user._id)
+        res.cookie("token",token,{
+            secure:false,
+            sameSite:"strict",
+            maxAge: 7*24*60*60*1000,
+            httpOnly: true
+        })
+
+       return res.status(200).json(user)
+
+    } catch (error) {
+        return res.status(500).json(`sign In error ${error}`)
     }
 }
