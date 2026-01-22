@@ -1,0 +1,51 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Build outputs
+dist/
+build/
+out/
+.temp/
+tmp/
+.cache/
+.cache/
+
+# Next.js or similar frameworks
+.next/
+dist-ssr/
+
+# Environment variables
+.env
+.env.*.local
+
+# Local runtime filesS
+*.local
+
+# System files
+.DS_Store
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Editor directories and settings
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Optional: Mac and Linux trash folders
+.Trashes
+*.bak
