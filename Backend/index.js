@@ -7,7 +7,7 @@ import cookieParser from "cookie-parser"
 import authRouter from "./routes/auth.routes.js"
 
 const app = express()
-const Port = process.env.PORT || 5000
+const Port = process.env.PORT 
 
 app.use(express.json())
 app.use(cookieParser())

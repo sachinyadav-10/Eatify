@@ -6,7 +6,7 @@ import bcrypt from "bcryptjs"
 export const signUp=async(req,res)=>{
     try {
         const {fullname,email,password,mobilenumber,role} = req.body
-        const user = await user.findOne({email})
+        let user = await user.findOne({email})
         if(user){
             return res.status(400).json({message: "User Already exist."})
         }
