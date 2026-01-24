@@ -1,5 +1,5 @@
-import User from "../models/user.model";
-import genToken from "../utiles/token";
+import User from "../models/user.model.js";
+import genToken from "../utiles/token.js";
 import bcrypt from "bcryptjs"
 
 // Signup API
@@ -69,5 +69,18 @@ export const signIn=async(req,res)=>{
 
     } catch (error) {
         return res.status(500).json(`sign In error ${error}`)
+    }
+}
+
+// SignOut API
+
+export const signOut = async(req,res)=>{
+    try{
+        res.clearcookie("token")
+
+        return res.status(200).json({message :"Log Out Successfully"})
+
+    }catch(error){
+          return res.status(500).json(`sign Out error ${error}`)
     }
 }
