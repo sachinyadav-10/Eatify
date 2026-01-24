@@ -26,8 +26,8 @@ function SignUp() {
 
   const handleSignUp = async()=>{
     try {
-        const result = await axios.post(`${serverUrl}/api/auth/signup`,{
-            name,email,mobnumber,password,role
+        const result = await axios.post(`${serverUrl}/api/auth/signin`,{
+            email,password
         },{withCredentials:true})
         console.log(result)
     } catch (error) {
